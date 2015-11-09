@@ -3,6 +3,9 @@ from node import Column
 from node import Integer
 from node import String
 from node import Sequence
+from node import ForeignKey
+from node import relationship
+from node import backref
 
 
 class Network(Base):
@@ -12,3 +15,7 @@ class Network(Base):
     description = Column(String(200))
     address = Column(String(25))
     type = Column(String(1))
+
+    host_id = Column(Integer, ForeignKey('host.id'))
+    host = relationship('Host',
+                        backref=backref('networks', order_by=id))
