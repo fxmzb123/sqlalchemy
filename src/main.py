@@ -9,6 +9,7 @@ from account.user import User
 from node.host import Host
 from node.package import Package
 from node import HostPackage
+from node.network import Network
 
 ''' class Address(Base):
     __tablename__ = 'addresses'
@@ -117,6 +118,22 @@ host.uuid = '12345678'
 host.ip = '12.12.12.12'
 host.security_group = 'security group1'
 
+network1 = Network()
+
+network1.name = 'eth0'
+network1.description = 'ipv4 address'
+network1.address = '144.6.228.98'
+network1.type = 'ip4_interfaces'
+
+network2 = Network()
+
+network2.name = 'lo'
+network2.description = 'ipv4 address'
+network2.address = '127.0.0.1'
+network2.type = 'ip4_interfaces'
+
+host.networks = [network1, network2]
+
 package = Package()
 
 package.name = 'zip'
@@ -124,7 +141,6 @@ package.architecture = 'ammd64'
 package.description = 'zip function'
 package.version = '1.0'
 package.status = 'installed'
-
 
 session.add(package)
 session.add(host)
